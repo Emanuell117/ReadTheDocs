@@ -1,4 +1,4 @@
-# Ejemplo de otra pestaña
+# Pestaña 1
 
 Este es un ejemplo de una pestaña adicional en la documentación. Puedes agregar aquí cualquier información relevante sobre tu proyecto.
 
