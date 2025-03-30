@@ -42,7 +42,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">READ THE DOCS WITH DOCKER</a></li>
+<li><a class="reference internal" href="#">READ THE DOCS WITH DOCKER</a><ul>
+<li><a class="reference internal" href="#for-public-repositories">For Public Repositories</a><ul>
+<li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
+<li><a class="reference internal" href="#docker-set-up">Docker set up</a></li>
+<li><a class="reference internal" href="#logging-into-github">Logging into GitHub</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-private-repositories">For private repositories:</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -73,7 +82,10 @@
 <h1>READ THE DOCS WITH DOCKER<a class="headerlink" href="#read-the-docs-with-docker" title="Link to this heading"></a></h1>
 <p>This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.
 There are two types of repositories: public and private. First, we will set it up with a public repository.</p>
-<p>### For Public Repositories</p>
+<section id="for-public-repositories">
+<h2>For Public Repositories<a class="headerlink" href="#for-public-repositories" title="Link to this heading"></a></h2>
+<section id="dockerfile">
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading"></a></h3>
 <p>First, you must copy the Dockerfile:</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
 
@@ -123,6 +135,9 @@ vim
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/sbin/sshd&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-D&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
+</section>
+<section id="docker-set-up">
+<h3>Docker set up<a class="headerlink" href="#docker-set-up" title="Link to this heading"></a></h3>
 <p>Once you edit the port (if needed) and your repository URL, run the following command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>--no-cache<span class="w"> </span>-t<span class="w"> </span>rtdocker<span class="w"> </span>.
 </pre></div>
@@ -155,8 +170,17 @@ ssh<span class="w"> </span>root@localhost<span class="w"> </span>-p<span class="
 </div>
 <p>If you are in a different directory, search for the <cite>app</cite> directory, where the cloned repository is located.</p>
 <p>Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.</p>
+</section>
+<section id="logging-into-github">
+<h3>Logging into GitHub<a class="headerlink" href="#logging-into-github" title="Link to this heading"></a></h3>
+<p>You can log in however you want; here we are going to show the SSH method:</p>
+</section>
+</section>
+<section id="for-private-repositories">
+<h2>For private repositories:<a class="headerlink" href="#for-private-repositories" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 
 

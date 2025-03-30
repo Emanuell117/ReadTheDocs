@@ -4,8 +4,11 @@ READ THE DOCS WITH DOCKER
 This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.  
 There are two types of repositories: public and private. First, we will set it up with a public repository.  
 
-### For Public Repositories  
+For Public Repositories
+-----------------------
 
+Dockerfile
+~~~~~~~~~~
 First, you must copy the Dockerfile:  
 
 .. code-block:: docker  
@@ -57,6 +60,8 @@ First, you must copy the Dockerfile:
 
    CMD ["/usr/sbin/sshd", "-D"]  
 
+Docker set up
+~~~~~~~~~~~~~
 Once you edit the port (if needed) and your repository URL, run the following command:  
 
 .. code-block:: shell  
@@ -105,8 +110,15 @@ If you are in a different directory, search for the `app` directory, where the c
 
 Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.  
 
+Logging into GitHub
+~~~~~~~~~~~~~~~~~~~
+You can log in however you want; here we are going to show the SSH method:  
+
+For private repositories:
+-------------------------
+
 .. toctree::  
    :maxdepth: 2  
    :caption: Contents:  
 
-   index.rst  
+   index.rst
