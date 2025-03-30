@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>```rst &mdash; RTD Docker  documentation</title>
+  <title>READ THE DOCS WITH DOCKER &mdash; RTD Docker  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -42,14 +42,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">```rst</a></li>
-<li><a class="reference internal" href="#read-the-docs-with-docker">READ THE DOCS WITH DOCKER</a></li>
-<li><a class="reference internal" href="#for-public-repositories">For Public Repositories</a></li>
+<li><a class="reference internal" href="#">READ THE DOCS WITH DOCKER</a><ul>
+<li><a class="reference internal" href="#for-public-repositories">For Public Repositories</a><ul>
 <li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
-<li><a class="reference internal" href="#docker-setup">Docker Setup</a></li>
+<li><a class="reference internal" href="#docker-set-up">Docker set up</a></li>
 <li><a class="reference internal" href="#logging-into-github">Logging into GitHub</a></li>
 <li><a class="reference internal" href="#pushing-to-github">Pushing to GitHub</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#for-private-repositories">For Private Repositories</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -66,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">```rst</li>
+      <li class="breadcrumb-item active">READ THE DOCS WITH DOCKER</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,59 +79,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="rst">
-<h1><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>rst<a class="headerlink" href="#rst" title="Link to this heading"></a></h1>
-</section>
-<section id="read-the-docs-with-docker">
+  <section id="read-the-docs-with-docker">
 <h1>READ THE DOCS WITH DOCKER<a class="headerlink" href="#read-the-docs-with-docker" title="Link to this heading"></a></h1>
 <p>This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.
 There are two types of repositories: public and private. First, we will set it up with a public repository.</p>
-</section>
 <section id="for-public-repositories">
-<h1>For Public Repositories<a class="headerlink" href="#for-public-repositories" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-</div>
-</section>
+<h2>For Public Repositories<a class="headerlink" href="#for-public-repositories" title="Link to this heading"></a></h2>
 <section id="dockerfile">
-<h1>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading"></a></h1>
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading"></a></h3>
 <p>First, you must copy the Dockerfile:</p>
-<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
 
 <span class="k">USER</span><span class="w"> </span><span class="s">root</span>
 
 <span class="c"># Install system dependencies</span>
 <span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>git<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>openssh-server<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>python3<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>python3-pip<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>python3-venv<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>python3-full<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>vim
+<span class="w">   </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>openssh-server<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>python3<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>python3-pip<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>python3-venv<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>vim
 
 <span class="c"># Create a Python virtual environment</span>
 <span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/venv
 <span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 
 <span class="c"># Install Sphinx and sphinx_rtd_theme</span>
-<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme
 
 <span class="c"># Configure OpenSSH</span>
 <span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/var/run/sshd
-<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;root:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>chpasswd
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;root:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>chpasswd<span class="w">  </span>#<span class="w"> </span>Change<span class="w"> </span>the<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>security
 
 <span class="c"># Allow login via SSH</span>
 <span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
 <span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#PasswordAuthentication yes/PasswordAuthentication yes/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
 
-<span class="c"># Expose port 22</span>
+<span class="c"># Expose port 22 (you can change the port)</span>
 <span class="k">EXPOSE</span><span class="w"> </span><span class="s">22</span>
 
 <span class="c"># Set the working directory</span>
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
 
-<span class="c"># Clone your Read the Docs repository</span>
-<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;https://github.com/yourrepo&gt;<span class="w"> </span>.
+<span class="c"># Clone your Read the Docs repository (HTTPS)</span>
+<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourrepo<span class="w"> </span>.
 
 <span class="c"># Install `requirements.txt` dependencies if they exist</span>
 <span class="k">RUN</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="p">;</span><span class="w"> </span><span class="k">fi</span>
@@ -140,20 +136,25 @@ There are two types of repositories: public and private. First, we will set it u
 </pre></div>
 </div>
 </section>
-<section id="docker-setup">
-<h1>Docker Setup<a class="headerlink" href="#docker-setup" title="Link to this heading"></a></h1>
+<section id="docker-set-up">
+<h3>Docker set up<a class="headerlink" href="#docker-set-up" title="Link to this heading"></a></h3>
 <p>Once you edit the port (if needed) and your repository URL, run the following command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>--no-cache<span class="w"> </span>-t<span class="w"> </span>rtdocker<span class="w"> </span>.
 </pre></div>
 </div>
-<p>When the build is finished, run the container:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span>hostport:22<span class="w"> </span>--name<span class="w"> </span>rtd-container<span class="w"> </span>rtdocker
+<p>The flag <cite>–no-cache</cite> ensures that Docker does not override the working directory or delete the cloned repository.</p>
+<p>When the build is finished, it’s time to run the container. Use this command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change `hostport` to any available port on your machine</span>
+<span class="c1"># Change `22` if you have modified it in the Dockerfile</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span>hostport:22<span class="w"> </span>--name<span class="w"> </span>rtd-container<span class="w"> </span>rtdocker
 </pre></div>
 </div>
 <p>Now that the container is running, establish a connection with it using:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>root@localhost<span class="w"> </span>-p<span class="w"> </span>hostport
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change `hostport` to the previously set value</span>
+ssh<span class="w"> </span>root@localhost<span class="w"> </span>-p<span class="w"> </span>hostport
 </pre></div>
 </div>
+<p>Type <strong>yes</strong> when prompted, then enter the password you set in the Dockerfile.</p>
 <p>Once inside the container, verify your current directory:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
 </pre></div>
@@ -166,46 +167,56 @@ There are two types of repositories: public and private. First, we will set it u
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/app
 </pre></div>
 </div>
-<p>Now you can edit your files and push them to GitHub.</p>
+<p>If you are in a different directory, search for the <cite>app</cite> directory, where the cloned repository is located.</p>
+<p>Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.</p>
 </section>
 <section id="logging-into-github">
-<h1>Logging into GitHub<a class="headerlink" href="#logging-into-github" title="Link to this heading"></a></h1>
-<p>To set up GitHub via SSH, write the following commands:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;youremail@example.com&quot;</span>
+<h3>Logging into GitHub<a class="headerlink" href="#logging-into-github" title="Link to this heading"></a></h3>
+<p>You can log in however you want; here we are going to show the SSH method.</p>
+<p>To set up your GitHub via SSH, write the following commands:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change your email</span>
+ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;youremail@example.com&quot;</span>
 <span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
 ssh-add<span class="w"> </span>~/.ssh/id_ed25519
 cat<span class="w"> </span>~/.ssh/id_ed25519.pub
 </pre></div>
 </div>
-<p>Now, copy the output and go to GitHub:</p>
-<ol class="arabic simple">
-<li><p>Click on <strong>Settings</strong> → <strong>SSH and GPG keys</strong> → <strong>New SSH Key</strong>.</p></li>
-<li><p>Paste the copied key and click <strong>Add</strong>.</p></li>
-</ol>
-<p>Go back to Docker and verify the connection:</p>
+<p>Now copy the output of <cite>cat</cite>, then go to GitHub.
+Click on your profile → Settings → SSH and GPG keys → New SSH Key.
+In the key field, paste the output, then click “Add”.</p>
+<p>Go back to Docker and write:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-</pre></div>
-</div>
-<p>You should see:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Hi<span class="w"> </span>your-username!<span class="w"> </span>You<span class="err">&#39;</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
+<span class="c1"># You should see an output like this:</span>
+Hi<span class="w"> </span>your-username!<span class="w"> </span>You<span class="err">&#39;</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
 </pre></div>
 </div>
 </section>
 <section id="pushing-to-github">
-<h1>Pushing to GitHub<a class="headerlink" href="#pushing-to-github" title="Link to this heading"></a></h1>
-<p>Before starting, make sure you are in the folder where the repository is located.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:user/repository.git
+<h3>Pushing to GitHub<a class="headerlink" href="#pushing-to-github" title="Link to this heading"></a></h3>
+<p>Remember, to push to the repository, you must have an account with access and privileges.</p>
+<p>Before we start, make sure you are in the folder where the repository is located.
+Go to GitHub, click on your repository, then click the green “Code” button and copy the SSH URL.
+Follow these steps:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change git@github.com:user/repository.git for the SSH URL</span>
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:user/repository.git
+
+<span class="c1"># Add changes</span>
 git<span class="w"> </span>add<span class="w"> </span>.
+
+<span class="c1"># Make a commit</span>
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your message&quot;</span>
+
+<span class="c1"># Push to GitHub</span>
 git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
 </div>
 </section>
+</section>
 <section id="for-private-repositories">
-<h1>For Private Repositories<a class="headerlink" href="#for-private-repositories" title="Link to this heading"></a></h1>
+<h2>For Private Repositories<a class="headerlink" href="#for-private-repositories" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 </div>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+</section>
 </section>
 
 
