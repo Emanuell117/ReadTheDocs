@@ -46,6 +46,7 @@
 <li><a class="reference internal" href="#for-public-repositories">For Public Repositories</a><ul>
 <li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
 <li><a class="reference internal" href="#docker-set-up">Docker set up</a></li>
+<li><a class="reference internal" href="#open-venv-environment">Open VENV environment</a></li>
 <li><a class="reference internal" href="#logging-into-github">Logging into GitHub</a></li>
 <li><a class="reference internal" href="#pushing-to-github">Pushing to GitHub</a></li>
 </ul>
@@ -168,10 +169,24 @@ ssh<span class="w"> </span>root@localhost<span class="w"> </span>-p<span class="
 </pre></div>
 </div>
 <p>If you are in a different directory, search for the <cite>app</cite> directory, where the cloned repository is located.</p>
+</section>
+<section id="open-venv-environment">
+<span id="opening-venv"></span><h3>Open VENV environment<a class="headerlink" href="#open-venv-environment" title="Link to this heading"></a></h3>
+<p>To open the VENV environment, use the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/venv/bin/activate
+
+<span class="c1"># Verify you have all necessary dependencies</span>
+pip<span class="w"> </span>list
+
+<span class="c1"># When you finish editing your files, use the following commands in the directory with the Makefile</span>
+make<span class="w"> </span>clean
+make<span class="w"> </span>html
+</pre></div>
+</div>
 <p>Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.</p>
 </section>
 <section id="logging-into-github">
-<h3>Logging into GitHub<a class="headerlink" href="#logging-into-github" title="Link to this heading"></a></h3>
+<span id="id1"></span><h3>Logging into GitHub<a class="headerlink" href="#logging-into-github" title="Link to this heading"></a></h3>
 <p>You can log in however you want; here we are going to show the SSH method.</p>
 <p>To set up your GitHub via SSH, write the following commands:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change your email</span>
@@ -194,6 +209,10 @@ Hi<span class="w"> </span>your-username!<span class="w"> </span>You<span class="
 <section id="pushing-to-github">
 <h3>Pushing to GitHub<a class="headerlink" href="#pushing-to-github" title="Link to this heading"></a></h3>
 <p>Remember, to push to the repository, you must have an account with access and privileges.</p>
+<p>Before editing the file, do a pull to bring all the changes:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
 <p>Before we start, make sure you are in the folder where the repository is located.
 Go to GitHub, click on your repository, then click the green “Code” button and copy the SSH URL.
 Follow these steps:</p>
@@ -210,10 +229,34 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
 </div>
+<p>Now Read the Docs will automatically update the documentation with the changes you pushed.</p>
 </section>
 </section>
 <section id="for-private-repositories">
 <h2>For Private Repositories<a class="headerlink" href="#for-private-repositories" title="Link to this heading"></a></h2>
+<p>For private repositories, we are going to copy the same Dockerfile but we are going to comment or
+delete this line (if you don’t need the public repository):</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># Clone your Read the Docs repository (HTTPS)</span>
+<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourrepo<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Before cloning the repository, you must log in to your GitHub account so it has permissions to clone it.
+See <a class="reference internal" href="#logging-into-github"><span class="std std-ref">Logging into GitHub</span></a> for instructions on logging into GitHub.</p>
+<p>Once you are logged in, clone the repository with the SSH URL. Make sure you clone it in the <cite>app</cite> directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a directory inside `app` to work in the repo</span>
+mkdir<span class="w"> </span>project
+<span class="nb">cd</span><span class="w"> </span>project
+
+<span class="c1"># Clone your Read the Docs repository (SSH)</span>
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:ssh-url-ofyourrepo<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Open the VENV environment: <a class="reference internal" href="#opening-venv"><span class="std std-ref">Open VENV environment</span></a>.</p>
+<p>Access the directory that has the repo requirements and run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>Now you are set to edit and upload files.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>

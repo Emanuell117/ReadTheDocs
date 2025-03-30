@@ -106,8 +106,25 @@ Navigate to the application directory:
 
 If you are in a different directory, search for the `app` directory, where the cloned repository is located.  
 
+.. _opening_venv:
+Open VENV environment
+~~~~~~~~~~~~~~~~~~~~~
+To open the VENV environment, use the following command:  
+
+.. code-block:: shell  
+
+   source /venv/bin/activate
+
+   # Verify you have all necessary dependencies  
+   pip list  
+
+   # When you finish editing your files, use the following commands in the directory with the Makefile  
+   make clean  
+   make html  
+
 Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.  
 
+.. _logging_into_github:
 Logging into GitHub
 ~~~~~~~~~~~~~~~~~~~
 You can log in however you want; here we are going to show the SSH method.
@@ -138,6 +155,12 @@ Pushing to GitHub
 ~~~~~~~~~~~~~~~~~
 Remember, to push to the repository, you must have an account with access and privileges.
 
+Before editing the file, do a pull to bring all the changes:  
+
+.. code-block:: shell  
+
+   git pull --rebase origin main  
+
 Before we start, make sure you are in the folder where the repository is located.  
 Go to GitHub, click on your repository, then click the green "Code" button and copy the SSH URL.  
 Follow these steps:  
@@ -156,9 +179,42 @@ Follow these steps:
    # Push to GitHub  
    git push origin main  
 
+Now Read the Docs will automatically update the documentation with the changes you pushed.  
+
 For Private Repositories
 -------------------------
+For private repositories, we are going to copy the same Dockerfile but we are going to comment or  
+delete this line (if you don't need the public repository):  
 
-.. toctree::
-   :maxdepth: 2
-   :caption: READ THE DOCS WITH DOCKER
+.. code-block:: docker  
+
+   # Clone your Read the Docs repository (HTTPS)  
+   RUN git clone https://github.com/yourrepo .  
+
+Before cloning the repository, you must log in to your GitHub account so it has permissions to clone it.  
+See :ref:`logging_into_github` for instructions on logging into GitHub.  
+
+Once you are logged in, clone the repository with the SSH URL. Make sure you clone it in the `app` directory:  
+
+.. code-block:: shell  
+
+   # Make a directory inside `app` to work in the repo  
+   mkdir project  
+   cd project  
+
+   # Clone your Read the Docs repository (SSH)  
+   git clone git@github.com:ssh-url-ofyourrepo .  
+
+Open the VENV environment: :ref:`opening_venv`.  
+
+Access the directory that has the repo requirements and run:  
+
+.. code-block:: shell  
+
+   pip install -r requirements.txt  
+
+Now you are set to edit and upload files.  
+
+.. toctree::  
+   :maxdepth: 2  
+   :caption: READ THE DOCS WITH DOCKER  
