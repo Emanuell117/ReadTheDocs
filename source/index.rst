@@ -1,18 +1,64 @@
-.. Apolo documentation master file, created by
-   sphinx-quickstart on Thu Mar 20 11:19:50 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+READ THE DOCS WITH DOCKER
+=========================
 
-Apolo documentation
-===================
+This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.
 
-Este texto fue cambiado como prueba.
+First, you must copy the Dockerfile:
 
+.. code-block:: docker
+
+   FROM ubuntu:latest
+
+   USER root
+
+   # Install system dependencies
+   RUN apt-get update && apt-get install -y \
+   git \
+   openssh-server \
+   python3 \
+   python3-pip \
+   python3-venv \
+   python3-full \
+   vim  
+
+   # Create python virtual environment
+   RUN python3 -m venv /venv
+   ENV PATH="/venv/bin:$PATH"
+
+   # Install Sphinx and sphinx_rtd_theme
+   RUN pip install --upgrade pip \
+      && pip install sphinx sphinx_rtd_theme
+
+   # Config OpenSSH
+   RUN mkdir /var/run/sshd
+   RUN echo 'root:password' | chpasswd  # Cambia la contraseña por seguridad
+
+   # Allow login by SSH
+   RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+   RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+   # Expose port 22 (you can change the port)
+   EXPOSE 22
+
+   # Working directory
+   WORKDIR /app
+
+   # Clone the repo of your ReadTheDocs repo (HTTPS)
+   RUN git clone <https://github.com/yourrepo> .
+
+   # Install`requirements.txt` dependencies if exists
+   RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+
+   # Create volumens
+   VOLUME [ "/root/.ssh", "/app" ]
+
+   CMD ["/usr/sbin/sshd", "-D"]
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   pestana.md
+
+
 
 
