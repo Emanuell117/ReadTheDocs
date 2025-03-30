@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Apolo'
-copyright = '2025, Author'
-author = 'Author'
+project = 'RTD Docker'
+copyright = '2025, Emanuell'
+author = 'Emanuell'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

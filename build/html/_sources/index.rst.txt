@@ -1,68 +1,112 @@
-READ THE DOCS WITH DOCKER
-=========================
+READ THE DOCS WITH DOCKER  
+=========================  
 
-This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.
+This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.  
+There are two types of repositories: public and private. First, we will set it up with a public repository.  
 
-<<<<<<< HEAD
-Este texto fue cambiado como prueba.
-=======
-First, you must copy the Dockerfile:
->>>>>>> 202a6c6 (Title and dockerfile)
+### For Public Repositories  
 
-.. code-block:: docker
+First, you must copy the Dockerfile:  
 
-   FROM ubuntu:latest
+.. code-block:: docker  
 
-   USER root
+   FROM ubuntu:latest  
 
-   # Install system dependencies
-   RUN apt-get update && apt-get install -y \
-   git \
-   openssh-server \
-   python3 \
-   python3-pip \
-   python3-venv \
-   python3-full \
-   vim  
+   USER root  
 
-   # Create python virtual environment
-   RUN python3 -m venv /venv
-   ENV PATH="/venv/bin:$PATH"
+   # Install system dependencies  
+   RUN apt-get update && apt-get install -y \  
+   git \  
+   openssh-server \  
+   python3 \  
+   python3-pip \  
+   python3-venv \  
+   python3-full \  
+   vim    
 
-   # Install Sphinx and sphinx_rtd_theme
-   RUN pip install --upgrade pip \
-      && pip install sphinx sphinx_rtd_theme
+   # Create a Python virtual environment  
+   RUN python3 -m venv /venv  
+   ENV PATH="/venv/bin:$PATH"  
 
-   # Config OpenSSH
-   RUN mkdir /var/run/sshd
-   RUN echo 'root:password' | chpasswd  # Cambia la contraseña por seguridad
+   # Install Sphinx and sphinx_rtd_theme  
+   RUN pip install --upgrade pip \  
+      && pip install sphinx sphinx_rtd_theme  
 
-   # Allow login by SSH
-   RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-   RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+   # Configure OpenSSH  
+   RUN mkdir /var/run/sshd  
+   RUN echo 'root:password' | chpasswd  # Change the password for security  
 
-   # Expose port 22 (you can change the port)
-   EXPOSE 22
+   # Allow login via SSH  
+   RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config  
+   RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config  
 
-   # Working directory
-   WORKDIR /app
+   # Expose port 22 (you can change the port)  
+   EXPOSE 22  
 
-   # Clone the repo of your ReadTheDocs repo (HTTPS)
-   RUN git clone <https://github.com/yourrepo> .
+   # Set the working directory  
+   WORKDIR /app  
 
-   # Install`requirements.txt` dependencies if exists
-   RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+   # Clone your Read the Docs repository (HTTPS)  
+   RUN git clone <https://github.com/yourrepo> .  
 
-   # Create volumens
-   VOLUME [ "/root/.ssh", "/app" ]
+   # Install `requirements.txt` dependencies if they exist  
+   RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi  
 
-   CMD ["/usr/sbin/sshd", "-D"]
+   # Create volumes  
+   VOLUME [ "/root/.ssh", "/app" ]  
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   CMD ["/usr/sbin/sshd", "-D"]  
 
+Once you edit the port (if needed) and your repository URL, run the following command:  
 
+.. code-block:: shell  
 
+   docker build --no-cache -t rtdocker .  
 
+The flag `--no-cache` ensures that Docker does not override the working directory or delete the cloned repository.  
 
+When the build is finished, it's time to run the container. Use this command:  
+
+.. code-block:: shell  
+
+   # Change `hostport` to any available port on your machine  
+   # Change `22` if you have modified it in the Dockerfile  
+   docker run -d -p hostport:22 --name rtd-container rtdocker  
+
+Now that the container is running, establish a connection with it using:  
+
+.. code-block:: shell  
+
+   # Change `hostport` to the previously set value  
+   ssh root@localhost -p hostport  
+
+Type **yes** when prompted, then enter the password you set in the Dockerfile.  
+
+Once inside the container, verify your current directory:  
+
+.. code-block:: shell  
+
+   pwd  
+
+If you are in:  
+
+.. code-block:: shell  
+
+   /root  
+
+Navigate to the application directory:  
+
+.. code-block:: shell  
+
+   cd ..  
+   cd app/  
+
+If you are in a different directory, search for the `app` directory, where the cloned repository is located.  
+
+Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.  
+
+.. toctree::  
+   :maxdepth: 2  
+   :caption: Contents:  
+
+   index.rst  

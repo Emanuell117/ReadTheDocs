@@ -1,36 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD
-  <title>Apolo documentation &mdash; Apolo  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-=======
-  <title>READ THE DOCS WITH DOCKER &mdash; Apolo  documentation</title>
+  <title>READ THE DOCS WITH DOCKER &mdash; RTD Docker  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
->>>>>>> 202a6c6 (Title and dockerfile)
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-<<<<<<< HEAD
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pestaña 1" href="pestana.html" /> 
-=======
     <link rel="search" title="Search" href="search.html" /> 
->>>>>>> 202a6c6 (Title and dockerfile)
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +30,7 @@
           
           
           <a href="#" class="icon icon-home">
-            Apolo
+            RTD Docker
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -52,15 +40,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-<<<<<<< HEAD
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pestana.html">Pestaña 1</a></li>
-=======
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">READ THE DOCS WITH DOCKER</a></li>
->>>>>>> 202a6c6 (Title and dockerfile)
 </ul>
 </div>
         </div>
@@ -69,7 +51,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Apolo</a>
+          <a href="#">RTD Docker</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -87,22 +69,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-<<<<<<< HEAD
-  <section id="apolo-documentation">
-<h1>Apolo documentation<a class="headerlink" href="#apolo-documentation" title="Link to this heading"></a></h1>
-<p>Este texto fue cambiado como prueba.</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pestana.html">Pestaña 1</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pestana.html#seccion-adicional">Sección adicional</a></li>
-</ul>
-</li>
-</ul>
-=======
   <section id="read-the-docs-with-docker">
 <h1>READ THE DOCS WITH DOCKER<a class="headerlink" href="#read-the-docs-with-docker" title="Link to this heading"></a></h1>
-<p>This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.</p>
+<p>This is the documentation to build and run the Docker container that hosts Read the Docs, allowing you to edit your documentation anywhere.
+There are two types of repositories: public and private. First, we will set it up with a public repository.</p>
+<p>### For Public Repositories</p>
 <p>First, you must copy the Dockerfile:</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
 
@@ -118,7 +89,7 @@ python3-venv<span class="w"> </span><span class="se">\</span>
 python3-full<span class="w"> </span><span class="se">\</span>
 vim
 
-<span class="c"># Create python virtual environment</span>
+<span class="c"># Create a Python virtual environment</span>
 <span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/venv
 <span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 
@@ -126,52 +97,77 @@ vim
 <span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme
 
-<span class="c"># Config OpenSSH</span>
+<span class="c"># Configure OpenSSH</span>
 <span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/var/run/sshd
-<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;root:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>chpasswd<span class="w">  </span>#<span class="w"> </span>Cambia<span class="w"> </span>la<span class="w"> </span>contraseña<span class="w"> </span>por<span class="w"> </span>seguridad
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;root:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>chpasswd<span class="w">  </span>#<span class="w"> </span>Change<span class="w"> </span>the<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>security
 
-<span class="c"># Allow login by SSH</span>
+<span class="c"># Allow login via SSH</span>
 <span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
 <span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#PasswordAuthentication yes/PasswordAuthentication yes/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
 
 <span class="c"># Expose port 22 (you can change the port)</span>
 <span class="k">EXPOSE</span><span class="w"> </span><span class="s">22</span>
 
-<span class="c"># Working directory</span>
+<span class="c"># Set the working directory</span>
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
 
-<span class="c"># Clone the repo of your ReadTheDocs repo (HTTPS)</span>
+<span class="c"># Clone your Read the Docs repository (HTTPS)</span>
 <span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;https://github.com/yourrepo&gt;<span class="w"> </span>.
 
-<span class="c"># Install`requirements.txt` dependencies if exists</span>
+<span class="c"># Install `requirements.txt` dependencies if they exist</span>
 <span class="k">RUN</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="p">;</span><span class="w"> </span><span class="k">fi</span>
 
-<span class="c"># Create volumens</span>
+<span class="c"># Create volumes</span>
 <span class="k">VOLUME</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;/root/.ssh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/app&quot;</span><span class="w"> </span><span class="p">]</span>
 
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/sbin/sshd&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-D&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>Once you edit the port (if needed) and your repository URL, run the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>--no-cache<span class="w"> </span>-t<span class="w"> </span>rtdocker<span class="w"> </span>.
+</pre></div>
+</div>
+<p>The flag <cite>–no-cache</cite> ensures that Docker does not override the working directory or delete the cloned repository.</p>
+<p>When the build is finished, it’s time to run the container. Use this command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change `hostport` to any available port on your machine</span>
+<span class="c1"># Change `22` if you have modified it in the Dockerfile</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span>hostport:22<span class="w"> </span>--name<span class="w"> </span>rtd-container<span class="w"> </span>rtdocker
+</pre></div>
+</div>
+<p>Now that the container is running, establish a connection with it using:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change `hostport` to the previously set value</span>
+ssh<span class="w"> </span>root@localhost<span class="w"> </span>-p<span class="w"> </span>hostport
+</pre></div>
+</div>
+<p>Type <strong>yes</strong> when prompted, then enter the password you set in the Dockerfile.</p>
+<p>Once inside the container, verify your current directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+<p>If you are in:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/root
+</pre></div>
+</div>
+<p>Navigate to the application directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>..
+<span class="nb">cd</span><span class="w"> </span>app/
+</pre></div>
+</div>
+<p>If you are in a different directory, search for the <cite>app</cite> directory, where the cloned repository is located.</p>
+<p>Now you can edit your files and push them to GitHub. Before pushing, make sure you are logged into GitHub.</p>
 <div class="toctree-wrapper compound">
->>>>>>> 202a6c6 (Title and dockerfile)
 </div>
 </section>
 
 
            </div>
           </div>
-<<<<<<< HEAD
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pestana.html" class="btn btn-neutral float-right" title="Pestaña 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-=======
           <footer>
->>>>>>> 202a6c6 (Title and dockerfile)
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, Author.</p>
+    <p>&#169; Copyright 2025, Emanuell.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
